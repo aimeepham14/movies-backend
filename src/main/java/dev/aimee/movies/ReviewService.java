@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class ReviewService {
+    @Autowired
     private ReviewRepository repository;
 
     @Autowired
@@ -20,7 +21,7 @@ public class ReviewService {
 
         mongoTemplate.update(Movie.class)
                 .matching(Criteria.where("imdbId").is(imdbId))
-                .apply(new Update().push("reviews").value (review))
+                .apply(new Update().push("reviews").value(review))
                 .first();
 
         return review;
